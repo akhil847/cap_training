@@ -1,0 +1,6 @@
+ID;name;country;status;website
+a1b2c3d4-0000-0000-0000-000000000001;Acme Supplies;US;Active;https://acme.example.com
+a1b2c3d4-0000-0000-0000-000000000002;Berlin Parts GmbH;DE;Pending;https://berlinparts.example.com
+a1b2c3d4-0000-0000-0000-000000000003;Mumbai Traders;IN;Active;https://mumbaitraders.example.com
+a1b2c3d4-0000-0000-0000-000000000004;Paris Logistique;FR;Inactive;https://parislog.example.com
+a1b2c3d4-0000-0000-0000-000000000005;Tokyo Components;JP;Pending;https://tokyocomp.example.com

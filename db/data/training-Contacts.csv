@@ -1,0 +1,11 @@
+ID;vendor_ID;name;email
+c0c0c0c0-0000-0000-0000-000000000001;a1b2c3d4-0000-0000-0000-000000000001;John Smith;john.smith@acme.example.com
+c0c0c0c0-0000-0000-0000-000000000002;a1b2c3d4-0000-0000-0000-000000000001;Mary Jones;mary.jones@acme.example.com
+c0c0c0c0-0000-0000-0000-000000000003;a1b2c3d4-0000-0000-0000-000000000002;Klaus Becker;klaus.becker@berlinparts.example.com
+c0c0c0c0-0000-0000-0000-000000000004;a1b2c3d4-0000-0000-0000-000000000002;Anna Schmidt;anna.schmidt@berlinparts.example.com
+c0c0c0c0-0000-0000-0000-000000000005;a1b2c3d4-0000-0000-0000-000000000003;Ravi Kumar;ravi.kumar@mumbaitraders.example.com
+c0c0c0c0-0000-0000-0000-000000000006;a1b2c3d4-0000-0000-0000-000000000003;Priya Sharma;priya.sharma@mumbaitraders.example.com
+c0c0c0c0-0000-0000-0000-000000000007;a1b2c3d4-0000-0000-0000-000000000004;Pierre Dubois;pierre.dubois@parislog.example.com
+c0c0c0c0-0000-0000-0000-000000000008;a1b2c3d4-0000-0000-0000-000000000004;Claire Martin;claire.martin@parislog.example.com
+c0c0c0c0-0000-0000-0000-000000000009;a1b2c3d4-0000-0000-0000-000000000005;Kenji Tanaka;kenji.tanaka@tokyocomp.example.com
+c0c0c0c0-0000-0000-0000-000000000010;a1b2c3d4-0000-0000-0000-000000000005;Yuki Sato;yuki.sato@tokyocomp.example.com

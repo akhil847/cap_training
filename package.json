@@ -1,0 +1,21 @@
+{
+  "name": "cap_training",
+  "version": "1.0.0",
+  "description": "SAP CAP (Node.js) training reference project for CPI developers - 5 sessions",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@sap/cds": "^10.2.2"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3.1.2",
+    "@sap/cds-dk": "^10.2.1"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch"
+  }
+}

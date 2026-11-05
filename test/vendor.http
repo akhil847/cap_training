@@ -1,0 +1,25 @@
+### ---------------------------------------------------------------------------
+### Session 1 - basic reads
+### Open this file in VS Code / BAS with the "REST Client" extension
+### and click "Send Request" above each request. Run `cds watch` first.
+### ---------------------------------------------------------------------------
+
+@server = http://localhost:4004
+
+### Service document - lists all entity sets
+GET {{server}}/odata/v4/vendor/
+
+### Service metadata (EDMX) - the OData "contract", similar to a WSDL
+GET {{server}}/odata/v4/vendor/$metadata
+
+### All vendors
+GET {{server}}/odata/v4/vendor/Vendors
+
+### One vendor by key
+GET {{server}}/odata/v4/vendor/Vendors(a1b2c3d4-0000-0000-0000-000000000001)
+
+### Vendors with their contacts (deep read via composition)
+GET {{server}}/odata/v4/vendor/Vendors?$expand=contacts
+
+### Filter + select + order
+GET {{server}}/odata/v4/vendor/Vendors?$filter=status eq 'Active'&$select=name,country&$orderby=name

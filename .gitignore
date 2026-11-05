@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Local databases created by cds deploy / cds watch
+*.sqlite
+*.db
+
+# Build output
+gen/
+mta_archives/
+*.mtar
+
+# Local secrets - never commit real keys
+.cdsrc-private.json
+default-env.json
+.env
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
