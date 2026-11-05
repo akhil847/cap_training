@@ -5,6 +5,7 @@
 ### ---------------------------------------------------------------------------
 
 @server = http://localhost:4004
+@vendorId = a1b2c3d4-0000-0000-0000-000000000002
 
 ### Service document - lists all entity sets
 GET {{server}}/odata/v4/vendor/
@@ -12,7 +13,7 @@ GET {{server}}/odata/v4/vendor/
 ### Service metadata (EDMX) - the OData "contract", similar to a WSDL
 GET {{server}}/odata/v4/vendor/$metadata
 
-### All vendors
+### All vendors (Pending vendors show " (pending)" - added by the after READ handler)
 GET {{server}}/odata/v4/vendor/Vendors
 
 ### One vendor by key
@@ -23,3 +24,62 @@ GET {{server}}/odata/v4/vendor/Vendors?$expand=contacts
 
 ### Filter + select + order
 GET {{server}}/odata/v4/vendor/Vendors?$filter=status eq 'Active'&$select=name,country&$orderby=name
+
+
+### ---------------------------------------------------------------------------
+### Session 2 - custom logic, actions, functions
+### ---------------------------------------------------------------------------
+
+### Create WITHOUT name -> expect 400 "Vendor name is required"
+POST {{server}}/odata/v4/vendor/Vendors
+Content-Type: application/json
+
+{
+  "country": "US"
+}
+
+### Create a vendor -> expect 201, status defaults to "Pending"
+POST {{server}}/odata/v4/vendor/Vendors
+Content-Type: application/json
+
+{
+  "name": "New Vendor Ltd",
+  "country": "GB",
+  "website": "https://newvendor.example.com"
+}
+
+### Deep create: vendor + contacts in one request
+POST {{server}}/odata/v4/vendor/Vendors
+Content-Type: application/json
+
+{
+  "name": "Deep Insert Inc",
+  "country": "CA",
+  "contacts": [
+    { "name": "Alice Brown", "email": "alice@deepinsert.example.com" },
+    { "name": "Bob White",   "email": "bob@deepinsert.example.com" }
+  ]
+}
+
+### Activate a Pending vendor (bound action) -> status becomes "Active"
+POST {{server}}/odata/v4/vendor/Vendors({{vendorId}})/VendorService.activate
+Content-Type: application/json
+
+{}
+
+### Read-only view: only Active vendors
+GET {{server}}/odata/v4/vendor/ActiveVendors
+
+### Try to write to the read-only view -> expect 405
+POST {{server}}/odata/v4/vendor/ActiveVendors
+Content-Type: application/json
+
+{
+  "name": "Should Fail"
+}
+
+### Unbound function: number of vendors
+GET {{server}}/odata/v4/vendor/vendorCount()
+
+### Vendors with contacts again
+GET {{server}}/odata/v4/vendor/Vendors?$expand=contacts

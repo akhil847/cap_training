@@ -3,7 +3,7 @@
 SAP CAP (Node.js) training reference project for CPI developers, split into 5 sessions.
 Each session is one git commit with a tag (`session-1` ... `session-5`).
 
-> This is the **session-1** state. The full README (deployment, troubleshooting) grows with later sessions.
+> This is the **session-2** state. The full README (deployment, troubleshooting) grows with later sessions.
 
 ## Prerequisites
 
@@ -34,3 +34,29 @@ Try:
 
 - http://localhost:4004/odata/v4/vendor/Vendors
 - http://localhost:4004/odata/v4/vendor/Vendors?$expand=contacts
+
+## Session 2 - Custom logic, actions, functions
+
+| File | What it adds |
+|------|--------------|
+| `srv/service.cds` | Bound action `activate()` on `Vendors`, read-only view `ActiveVendors`, unbound function `vendorCount()` |
+| `srv/service.js` | `class VendorService extends cds.ApplicationService` with handlers (same file name as `service.cds`) |
+| `test/vendor.http` | Create (400 and 201), deep create, activate, `ActiveVendors`, `vendorCount()` |
+
+Handlers in `srv/service.js`:
+
+- `before CREATE Vendors`: returns 400 when `name` is missing; sets `status` to `Pending` by default
+- `on activate`: `UPDATE(req.subject).with({ status: 'Active' })`, then returns the updated vendor
+- `on vendorCount`: `SELECT.one` with `count(*)`
+- `after READ Vendors`: appends ` (pending)` to the name of Pending vendors (demo only)
+
+Call the bound action:
+
+```
+POST /odata/v4/vendor/Vendors(a1b2c3d4-0000-0000-0000-000000000002)/VendorService.activate
+Content-Type: application/json
+
+{}
+```
+
+Call the function: `GET /odata/v4/vendor/vendorCount()`
